@@ -1,0 +1,212 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.g_xlPrimaryBtn {
+    @apply font-semibold text-white bg-gradient-to-b from-g_purple to-g_darkpurple px-[2.2rem] py-[0.7rem] rounded-lg text-lg transition-all                      
+  hover:shadow-g_PrimaryGlow
+  active:brightness-75
+  lg:px-[3rem] lg:py-4 lg:text-xl lg:mt-6;
+}
+
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --backgroundsecondary: 0 0% 98%;
+        --foreground: 222.2 84% 4.9%;
+
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 215.4 16.3% 46.9%;
+
+        --popover: 0 0% 100%;
+        --popover-foreground: 222.2 84% 4.9%;
+
+        --card: 0 0% 98.5%;
+        --card-foreground: 222.2 84% 4.9%;
+
+        --border: 214.3 31.8% 91.4%;
+        --input: 214.3 31.8% 91.4%;
+
+        --primary: 222.2 47.4% 11.2%;
+        --primary-foreground: 210 40% 98%;
+
+        --secondary: 210 40% 92.1%;
+        --secondary-foreground: 222.2 47.4% 11.2%;
+
+        --accent: 210 40% 92.1%;
+        --accent-foreground: 222.2 47.4% 11.2%;
+
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+
+        --success: 120 39% 54%;
+        --success-foreground: 210 40% 98%;
+
+        --ring: 215 20.2% 65.1%;
+
+        --radius: 0.5rem;
+
+        --g_lightpurple: 270 100% 67%;
+        --g_purple: 270 100% 63%;
+        --g_darkpurple: 270 76% 46%;
+    }
+
+    .dark {
+        --background: 0 0% 4%;
+        --backgroundsecondary: 0 0% 6%;
+        --foreground: 210 40% 98%;
+
+        --muted: 217.2 0% 17.5%;
+        --muted-foreground: 215 0% 65.1%;
+
+        --popover: 0 0% 6%;
+        --popover-foreground: 210 40% 98%;
+
+        --card: 0 0% 5.5%;
+        --card-foreground: 210 40% 98%;
+
+        --border: 217 0% 18%;
+        --input: 217 0% 18%;
+
+        --primary: 210 40% 98%;
+        --primary-foreground: 222.2 47.4% 11.2%;
+
+        --secondary: 217 0% 12%;
+        --secondary-foreground: 210 40% 98%;
+
+        --accent: 217 0% 16%;
+        --accent-foreground: 210 40% 98%;
+
+        --destructive: 0 62.8% 50%;
+        --destructive-foreground: 0 85.7% 97.3%;
+
+        --success: 120 45% 49%;
+        --success-foreground: 210 40% 98%;
+
+        --ring: 217 0% 18%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+
+        -webkit-font-smoothing: antialised;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        font-feature-settings: "cv11", "salt", "ss01", "ss03", "cv01", "cv02", "cv03", "cv04",
+            "cv05", "cv06", "cv09", "cv10";
+    }
+}
+
+@keyframes scaleAnimation {
+    0% {
+        opacity: 0;
+        transform: scale(1.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes drawCircle {
+    0% {
+        stroke-dashoffset: 151px;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes drawCheck {
+    0% {
+        stroke-dashoffset: 36px;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#successAnimationCircle {
+    stroke-dasharray: 151px 151px;
+    stroke: #fff;
+}
+
+#successAnimationCheck {
+    stroke-dasharray: 36px 36px;
+    stroke: #fff;
+}
+
+#successAnimationResult {
+    fill: #a142ff;
+    opacity: 0;
+}
+
+#successAnimation.animated {
+    animation: 1s ease-out 0s 1 both scaleAnimation;
+}
+
+#successAnimation.animated #successAnimationCircle {
+    animation: 1s cubic-bezier(0.77, 0, 0.175, 1) 0s 1 both drawCircle,
+        0.3s linear 0.9s 1 both fadeOut;
+}
+
+#successAnimation.animated #successAnimationCheck {
+    animation: 1s cubic-bezier(0.77, 0, 0.175, 1) 0s 1 both drawCheck;
+}
+
+#successAnimation.animated #successAnimationResult {
+    animation: 0.3s linear 0.9s both fadeIn;
+}
+
+.translatez10 {
+    transform: translateZ(10px);
+}
+
+.glowingCard {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    background-color: var(--card);
+    padding: 1rem;
+    border-radius: var(--radius);
+    @apply h-[125px] md:h-[250px] lg:h-[300px] shadow-xl border-border border-[1px];
+}
+
+.glowingCard::before {
+    background: radial-gradient(
+        800px circle at var(--mouse-x) var(--mouse-y),
+        rgba(255, 255, 255, 0.06),
+        transparent 40%
+    );
+    border-radius: inherit;
+    content: "";
+    height: 100%;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    z-index: 2;
+}
